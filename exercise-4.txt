@@ -1,0 +1,5 @@
+SELECT CONCAT(UPPER(SUBSTRING(Entry.firstName, 1, 1)), SUBSTRING(Entry.firstName, 2, (LENGTH(Entry.firstName)-2)), UPPER(SUBSTRING(Entry.firstName, -1, 1))) 
+AS "First Name", AddressBook.name AS "AddressBook.name"
+FROM Entry
+JOIN AddressBook ON Entry.addressBookId = AddressBook.id
+WHERE AddressBook.name = "Pharetra Ut Limited";
