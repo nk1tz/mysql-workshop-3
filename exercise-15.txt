@@ -1,0 +1,9 @@
+mysql> UPDATE ElectronicMail
+    -> SET type = "home"
+    -> WHERE type = "work";
+Query OK, 690 rows affected (0.01 sec)
+Rows matched: 690  Changed: 690  Warnings: 0
+
+----- >>
+What we talked about made sense but since ElectronicMail does NOT 
+actually HAVE a modifiedOn column
