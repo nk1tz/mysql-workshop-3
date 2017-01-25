@@ -147,8 +147,7 @@ mysql> SELECT firstName, AddressBook.name FROM Entry
             --------------------  EXCERCISE 5  ---------------------
             ========================================================
             
-            
-            
+
             
             
             
@@ -157,6 +156,10 @@ mysql> SELECT firstName, AddressBook.name FROM Entry
             ========================================================
             
             
+ SELECT Phone.content FROM Phone
+    JOIN Entry ON Phone.entryId = Entry.id
+    where Entry.firstName= 'Charlotte' and Entry.lastName= 'Jenkins';            
+                       
             
             
             
@@ -164,7 +167,9 @@ mysql> SELECT firstName, AddressBook.name FROM Entry
             --------------------  EXCERCISE 7  ---------------------
             ========================================================
             
-            
+ SELECT substring_index(content, '@', -1), COUNT(*) 
+    FROM ElectronicMail
+        GROUP BY substring_index(content, '@', -1);           
             
             
             
