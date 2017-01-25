@@ -1,0 +1,181 @@
+            ========================================================
+            --------------------  EXCERCISE 1  ---------------------
+            ========================================================
+
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| c9                 |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE DATABASE decodemtl_addressbook;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use decodemtl_addressbook;
+Database changed
+
+mysql> create table Adress(
+    -> id int auto_increment primary key,
+    -> entryId int, 
+    -> type ENUM("home","work","other"),
+    -> adressLine1 varchar(255),
+    -> adressLine2 varchar(255),
+    -> city varchar(255),
+    -> province varchar(128),
+    -> country varchar(128),
+    -> postalCode varchar(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table ElectronicMail(
+    -> id int auto_increment primary key,
+    -> entryId int,
+    -> type ENUM("home", "work", "other"),
+    -> content varchar(255)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table Phone(
+    -> id int auto_increment primary key,
+    -> type ENUM("home", "work", "other"),
+    -> subtype ENUM("landline", "cellular", "fax"),
+    -> content varchar(255)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table Entry(
+    -> id int auto_increment primary key,
+    -> addressBookId int,
+    -> firstName varchar(255),
+    -> lastName varchar(255),
+    -> birthday datetime,
+    -> type ENUM("phone", "address", "electronic-mail")
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table AddressBook(
+    -> id int auto_increment primary key,
+    -> accountId int,
+    -> name varchar(255),
+    -> createdOn datetime,
+    -> modifiedOn datetime
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table Account(
+    -> id int auto_increment primary key,
+    -> email varchar(255),
+    -> password varchar(40),
+    -> createdOn datetime,
+    -> modifiedOn
+    ->  DATETIME);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE TABLE Address (
+    ->     id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     entryId INT,
+    ->     type ENUM ('home', 'work', 'other'),
+    ->     addressLine1 VARCHAR(255),
+    ->     addressLine2 VARCHAR(255),
+    ->     city VARCHAR(255),
+    ->     province VARCHAR(128),
+    ->     country VARCHAR(128),
+    ->     postalCode VARCHAR(10),
+    ->     FOREIGN KEY (entryId) REFERENCES Entry(id)
+    ->     );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SHOW TABLES;
++---------------------------------+
+| Tables_in_decodemtl_addressbook |
++---------------------------------+
+| Account                         |
+| Address                         |
+| AddressBook                     |
+| Adress                          |
+| ElectronicMail                  |
+| Entry                           |
+| Phone                           |
++---------------------------------+
+7 rows in set (0.00 sec)
+
+
+
+            ========================================================
+            --------------------  EXCERCISE 2  ---------------------
+            ========================================================
+            
+            
+source data/import-account.sql;
+
+source data/import-addressbook.sql;
+
+source data/import-entry.sql;
+
+
+
+
+
+            ========================================================
+            --------------------  EXCERCISE 3  ---------------------
+            ========================================================
+
+
+mysql> select count(*) as countryCount, country from Address group by country ORDER BY countryCount DESC;
+mysql> select count(*) as countryCount, LOWER(country) from Address group by country ORDER BY countryCount DESC;
+
+
+
+            ========================================================
+            --------------------  EXCERCISE 4  ---------------------
+            ========================================================
+            
+            
+mysql> SELECT firstName, AddressBook.name FROM Entry
+    -> JOIN AddressBook ON Entry.addressBookId = AddressBook.id
+    -> WHERE AddressBook.name="Pharetra Ut Limited";
+
+            
+            
+            ========================================================
+            --------------------  EXCERCISE 5  ---------------------
+            ========================================================
+            
+            
+            
+            
+            
+            
+            ========================================================
+            --------------------  EXCERCISE 6  ---------------------
+            ========================================================
+            
+            
+            
+            
+            
+            ========================================================
+            --------------------  EXCERCISE 7  ---------------------
+            ========================================================
+            
+            
+            
+            
+            
+            ========================================================
+            --------------------  EXCERCISE 8  ---------------------
+            ========================================================
+            
+            
+            
+            
+            
+            ========================================================
+            --------------------  EXCERCISE 9  ---------------------
+            ========================================================
